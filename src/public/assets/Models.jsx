@@ -4,25 +4,28 @@ Command: npx gltfjsx@6.2.16 .\src\assets\WawaOffice.glb
 */
 
 import React, { useLayoutEffect, useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { useGLTF, useScroll } from '@react-three/drei'
 import gsap from 'gsap';
 import { useFrame } from '@react-three/fiber';
 
 
-export const FLOOR_HEIGHT = 3;
+export const INIT_X_POS = 0;
+export const INIT_Y_POS = 0;
+export const INIT_Z_POS = 0;
+export const FLOOR_HEIGHT = 4;
 export const NB_FLOORS = 4;
 
 
 export function Models(props) {
 
-
-
-const { nodes, materials } = useGLTF('./src/assets/bread_pack.glb')
+const { nodes, materials } = useGLTF('./src/public/assets/bread_pack.glb')
 const ref = useRef(); // useRef é um React Hook que mantém um valor que nao é utilizado no render e permite referenciá-lo  
 const tl = useRef(); // tl é uma referência que será utilizada adiante
-const paoItaliano = useRef();
-const paoFrances = useRef();
-const paoFermnat = useRef();
+const paoItalianoRef = useRef();
+const paoFrancesRef = useRef();
+const paoFermnatRef = useRef();
+
+const scroll = useScroll();
 
 useFrame( () => {
   tl.current.seek(scroll.offset * tl.current.duration()); 
@@ -37,52 +40,89 @@ useLayoutEffect( () => {
   tl.current.to(
       ref.current.position,
       {
-          duration:3, 
-          y: -FLOOR_HEIGHT * (NB_FLOORS - 1), 
+          duration:1, 
+          y: -FLOOR_HEIGHT, 
       },
       0
   );
+  tl.current.to(
+      ref.current.position,
+      {
+          duration:1, 
+          y: -FLOOR_HEIGHT* 2, 
+      },
+      1
+  );
+  tl.current.to(
+      ref.current.position,
+      {
+          duration:1, 
+          y: -FLOOR_HEIGHT* 3, 
+      },
+      2
+  );
+
 }, []
 );
 
 
 return (
-  <group {...props} dispose={null}
+  <group {...props} 
+  dispose={null}
   ref={ref}
-  position={[-1.5,-1,-1]}
+  position={[INIT_X_POS, INIT_Y_POS , INIT_Z_POS]}
   rotation= {[0, -Math.PI/12,0]}
   >
-    <mesh geometry={nodes.bread002.geometry} 
+    {/* <mesh geometry={nodes.bread002.geometry} 
       material={materials.bread01a} 
+      position={[0,0,1]}
       rotation={[-Math.PI / 3.0, 0, -Math.PI / 2]} 
-      scale={0.25} 
+      scale={1} 
     
     />
     <mesh geometry={nodes.bread003.geometry} 
       material={materials.bread02a} 
-      position={[0, 3.5, 0]} 
+      position={[0, FLOOR_HEIGHT, 1.5]} 
       rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]} 
-      scale={0.25} 
+      scale={1} 
     
     />
     <mesh geometry={nodes.bread.geometry} 
       material={materials.bread03a} 
-      position={[0 , 6.5, 0]} 
+      position={[0 , 2*FLOOR_HEIGHT, 2]} 
       rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]} 
-      scale={0.25} 
+      scale={1} 
     />
     <mesh geometry={nodes.bread001.geometry} 
       material={materials.bread04a} 
-      position={[0, 9, 0]} 
+      position={[0, 3*FLOOR_HEIGHT, 2]} 
       rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]} 
-      scale={0.25} 
-    />
+      scale={1} 
+    /> */}
+
+    <mesh position={[0, 0, 0]}>
+      <boxGeometry />
+      <meshMatcapMaterial />
+    </mesh>
+    <mesh position={[0, FLOOR_HEIGHT, 0]}>
+      <boxGeometry />
+      <meshMatcapMaterial />
+    </mesh>
+    <mesh position={[0, 2*FLOOR_HEIGHT, 0]}>
+      <boxGeometry />
+      <meshMatcapMaterial />
+    </mesh>
+    <mesh position={[0, 3*FLOOR_HEIGHT, 0]}>
+      <boxGeometry />
+      <meshMatcapMaterial />
+    </mesh>
+
   </group>
   )
 
 }
 
-useGLTF.preload('./src/assets/bread_pack.glb')
+useGLTF.preload('./src/public/assets/bread_pack.glb')
 
 
 // useGLTF.preload('./src/assets/italian_coffee_machine_moka.glb')
