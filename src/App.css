@@ -8,3 +8,11 @@ body{
   width:100vw;
   height: 100vh;
 }
+
+.rightalign{
+  align-items: end;
+}
+
+.leftalign{
+  align-items: start;
+}

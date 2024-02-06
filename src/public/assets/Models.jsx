@@ -9,7 +9,7 @@ import gsap from 'gsap';
 import { useFrame } from '@react-three/fiber';
 
 
-export const INIT_X_POS = 0;
+export const INIT_X_POS = 1.5;
 export const INIT_Y_POS = 0;
 export const INIT_Z_POS = 0;
 export const FLOOR_HEIGHT = 4;
@@ -20,10 +20,12 @@ export function Models(props) {
 
 const { nodes, materials } = useGLTF('./src/public/assets/bread_pack.glb')
 const ref = useRef(); // useRef é um React Hook que mantém um valor que nao é utilizado no render e permite referenciá-lo  
-const tl = useRef(); // tl é uma referência que será utilizada adiante
-const paoItalianoRef = useRef();
-const paoFrancesRef = useRef();
-const paoFermnatRef = useRef();
+const tl = useRef(); // tl é uma referência que será utilizada adiante para representar a 'linha do tempo' das animações, a qual estará ligada ao scroll da página
+const pao1 = useRef();
+const pao2 = useRef();
+const pao3 = useRef();
+const pao4 = useRef();
+
 
 const scroll = useScroll();
 
@@ -42,25 +44,80 @@ useLayoutEffect( () => {
       {
           duration:1, 
           y: -FLOOR_HEIGHT, 
+          x: -1,
       },
       0
   );
+  tl.current.to(
+      ref.current.rotation,
+      {
+          duration:1, 
+          y: -Math.PI/12, 
+      },
+      0
+  );
+  tl.current.to(
+      pao2.current.rotation,
+      {
+          duration:1, 
+          z: Math.PI/6, 
+      },
+      0
+  );
+
+
   tl.current.to(
       ref.current.position,
       {
           duration:1, 
           y: -FLOOR_HEIGHT* 2, 
+          x: 0,
       },
       1
   );
+  tl.current.to(
+    ref.current.rotation,
+    {
+        duration:1, 
+        y: Math.PI/12, 
+    },
+    1
+  );
+  tl.current.to(
+    pao3.current.rotation,
+    {
+        duration:1, 
+        z: Math.PI/6, 
+    },
+    1
+  );
+
   tl.current.to(
       ref.current.position,
       {
           duration:1, 
           y: -FLOOR_HEIGHT* 3, 
+          x: -0.5,
       },
       2
   );
+  tl.current.to(
+    ref.current.rotation,
+    {
+        duration:1, 
+        y: -Math.PI/12, 
+    },
+    2
+  );
+  tl.current.to(
+    pao4.current.rotation,
+    {
+        duration:1, 
+        z: Math.PI/2, 
+    },
+    2
+  );
+
 
 }, []
 );
@@ -71,36 +128,58 @@ return (
   dispose={null}
   ref={ref}
   position={[INIT_X_POS, INIT_Y_POS , INIT_Z_POS]}
-  rotation= {[0, -Math.PI/12,0]}
+  rotation= {[0, Math.PI/12,0]}
   >
-    {/* <mesh geometry={nodes.bread002.geometry} 
+    <group
+    position={[0,0,1]}
+    rotation={[-Math.PI / 3.0, 0, Math.PI / 6]}
+    ref={pao1}
+    >
+    <mesh geometry={nodes.bread002.geometry} 
       material={materials.bread01a} 
-      position={[0,0,1]}
-      rotation={[-Math.PI / 3.0, 0, -Math.PI / 2]} 
-      scale={1} 
+      scale={0.25} 
     
     />
-    <mesh geometry={nodes.bread003.geometry} 
-      material={materials.bread02a} 
-      position={[0, FLOOR_HEIGHT, 1.5]} 
-      rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]} 
-      scale={1} 
+    </group>
     
-    />
-    <mesh geometry={nodes.bread.geometry} 
-      material={materials.bread03a} 
-      position={[0 , 2*FLOOR_HEIGHT, 2]} 
-      rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]} 
-      scale={1} 
-    />
-    <mesh geometry={nodes.bread001.geometry} 
-      material={materials.bread04a} 
-      position={[0, 3*FLOOR_HEIGHT, 2]} 
-      rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]} 
-      scale={1} 
-    /> */}
 
-    <mesh position={[0, 0, 0]}>
+    <group
+    position={[0, FLOOR_HEIGHT, 1.5]} 
+    rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]} 
+    ref={pao2}
+    >
+      <mesh geometry={nodes.bread003.geometry} 
+      material={materials.bread02a} 
+      scale={0.25} 
+      />
+    </group>
+    
+
+    <group
+    position={[0 , 2*FLOOR_HEIGHT, 2]} 
+    rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]}
+    ref={pao3}
+    >
+      <mesh geometry={nodes.bread.geometry} 
+      material={materials.bread03a} 
+      scale={0.25} 
+      />
+    </group>
+    
+
+    <group
+    position={[0, 3*FLOOR_HEIGHT, 2]} 
+    rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]}
+    ref={pao4}
+    >
+      <mesh geometry={nodes.bread001.geometry} 
+      material={materials.bread04a} 
+      scale={0.25} 
+      />
+    </group>
+    
+
+    {/* <mesh position={[0, 0, 0]}>
       <boxGeometry />
       <meshMatcapMaterial />
     </mesh>
@@ -115,7 +194,7 @@ return (
     <mesh position={[0, 3*FLOOR_HEIGHT, 0]}>
       <boxGeometry />
       <meshMatcapMaterial />
-    </mesh>
+    </mesh> */}
 
   </group>
   )

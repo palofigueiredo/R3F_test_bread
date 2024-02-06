@@ -12,24 +12,23 @@ const Section = (prs) => {
     return(
         <section 
         itemID="OverlaySection"
-        className={`h-screen flex flex-col justify-center p-10 `}
-        style={{height:'100vh', width:'100vw', display:'flex',flexDirection:'column',justifyContent: 'center', padding:'10px'}}
-        style={{opacity:prs.opacity}
-        }
+        className={`h-screen flex flex-col justify-center p-10 ${prs.right ? 'rightalign' : 'leftalign'}`}
+        style={{ height:'100vh', width:'100vw', display:'flex',flexDirection:'column',justifyContent: 'center', padding:'0px', opacity:prs.opacity
+        }}
         >
             <div 
             itemID="OverlayFirstDiv" 
             className="w-1/2 flex items-center justify-center"
-            style={{width:'1/2vw', height: '100vh' , display:'flex', justifyItems:'center', alignItems:'center', backgroundColor:'#dd000055'}}>
+            style={{width:'50vw', height: '100vh' , display:'flex', justifyItems:'center', alignItems:'center', padding:'2rem', justifyContent:'center'}}>
                 <div 
                 itemID='OverlaySecondDiv'  
                 className="max-w-sm w-full"
-                style={{maxWidth:'24rem',width:'100%'}}
+                style={{maxWidth:'18rem',width:'100%'}}
                 >
                     <div 
                     itemID="OverlayThirdDiv" 
                     className="bg-white rounded-lg px-8 py-12"
-                    style={{backgroundColor:'white', borderRadius:'0.5rem',padding:'2rem 3rem'}}>
+                    style={{backgroundColor:'white', borderRadius:'0.5rem',padding:'2rem 3rem', margin: 'auto'}}>
                         {prs.children}
                     </div>
                 </div>
@@ -69,9 +68,10 @@ export const Overlay = () =>{
                 </Section >
 
                 <Section right opacity={opacitySecondSection} >
-                <h1 className='font-serif text-2xl' >Hello, World P2</h1>
+                <h1 className='font-serif text-2xl' >Second section</h1>
                 <p className="text-gray-500">
-                    This is the second text box
+                    This is the second text box <br />
+                    It has more text just to show how it will behave with longer paragraphs that may extend for a few lines. <br />It will also show how line breaks affect the looks.
                 </p>
                 
                 
@@ -79,7 +79,7 @@ export const Overlay = () =>{
                 </Section >
 
                 < Section opacity={opacityThirdSection} >
-                <h1 className='font-serif text-2xl' >Hello, World P3</h1>
+                <h1 className='font-serif text-2xl' >Part 3</h1>
                 <p className="text-gray-500">
                     Third one.
                 </p>
@@ -87,7 +87,7 @@ export const Overlay = () =>{
 
                 </Section >
 
-                < Section opacity={opacityFourthSection}>
+                < Section right opacity={opacityFourthSection}>
                 <h1 className='font-serif text-2xl' >Section 4</h1>
                 <p className="text-gray-500">
                     And this is the last one.
