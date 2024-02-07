@@ -4,15 +4,15 @@ Command: npx gltfjsx@6.2.16 .\src\assets\WawaOffice.glb
 */
 
 import React, { useLayoutEffect, useRef } from 'react'
-import { useGLTF, useScroll } from '@react-three/drei'
+import { Html, useGLTF, useScroll } from '@react-three/drei'
 import gsap from 'gsap';
 import { useFrame } from '@react-three/fiber';
 
 
-export const INIT_X_POS = 1.5;
+export const INIT_X_POS = 0;
 export const INIT_Y_POS = 0;
 export const INIT_Z_POS = 0;
-export const FLOOR_HEIGHT = 4;
+export const FLOOR_HEIGHT = 6;
 export const NB_FLOORS = 4;
 
 
@@ -48,22 +48,22 @@ useLayoutEffect( () => {
       },
       0
   );
-  tl.current.to(
-      ref.current.rotation,
-      {
-          duration:1, 
-          y: -Math.PI/12, 
-      },
-      0
-  );
-  tl.current.to(
-      pao2.current.rotation,
-      {
-          duration:1, 
-          z: Math.PI/6, 
-      },
-      0
-  );
+  // tl.current.to(
+  //     ref.current.rotation,
+  //     {
+  //         duration:1, 
+  //         y: -Math.PI/12, 
+  //     },
+  //     0
+  // );
+  // tl.current.to(
+  //     pao2.current.rotation,
+  //     {
+  //         duration:1, 
+  //         z: Math.PI/6, 
+  //     },
+  //     0
+  // );
 
 
   tl.current.to(
@@ -75,22 +75,22 @@ useLayoutEffect( () => {
       },
       1
   );
-  tl.current.to(
-    ref.current.rotation,
-    {
-        duration:1, 
-        y: Math.PI/12, 
-    },
-    1
-  );
-  tl.current.to(
-    pao3.current.rotation,
-    {
-        duration:1, 
-        z: Math.PI/6, 
-    },
-    1
-  );
+  // tl.current.to(
+  //   ref.current.rotation,
+  //   {
+  //       duration:1, 
+  //       y: Math.PI/12, 
+  //   },
+  //   1
+  // );
+  // tl.current.to(
+  //   pao3.current.rotation,
+  //   {
+  //       duration:1, 
+  //       z: Math.PI/6, 
+  //   },
+  //   1
+  // );
 
   tl.current.to(
       ref.current.position,
@@ -101,22 +101,22 @@ useLayoutEffect( () => {
       },
       2
   );
-  tl.current.to(
-    ref.current.rotation,
-    {
-        duration:1, 
-        y: -Math.PI/12, 
-    },
-    2
-  );
-  tl.current.to(
-    pao4.current.rotation,
-    {
-        duration:1, 
-        z: Math.PI/2, 
-    },
-    2
-  );
+  // tl.current.to(
+  //   ref.current.rotation,
+  //   {
+  //       duration:1, 
+  //       y: -Math.PI/12, 
+  //   },
+  //   2
+  // );
+  // tl.current.to(
+  //   pao4.current.rotation,
+  //   {
+  //       duration:1, 
+  //       z: Math.PI/2, 
+  //   },
+  //   2
+  // );
 
 
 }, []
@@ -128,18 +128,36 @@ return (
   dispose={null}
   ref={ref}
   position={[INIT_X_POS, INIT_Y_POS , INIT_Z_POS]}
-  rotation= {[0, Math.PI/12,0]}
+  rotation= {[0, 0 ,0]}
   >
+    
+    <Html className="content"  position={[0, 0, 0]} 
+      transform style={{fontFamily:'Arial', overflow:'visible',backgroundColor:'#2222ff55', border:'2px black solid', height:'100vh'}}>
+      <div className="wrapper" style={{backgroundColor:'#ff2222', height:'50vh',width:'150px'}} >
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente officiis odit mollitia aut corporis sed debitis dicta. Pariatur totam, similique enim, nam error quasi ullam obcaecati deleniti nesciunt debitis maxime.
+        <br />
+        </p>
+        <video autoPlay muted loop id="myVideo" style={{width:'100px'}}>
+            <source src="https://www.softfinanca.net/projectos/ca/campanhas/Campanhas_Producao_Backup_V3/0348_CA-Solucoes-Credito-Habitacao/CA_MD0348_V1_V_CA-Solucoes-Credito-Habitacao.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </Html>
+    
+
     <group
-    position={[0,0,1]}
-    rotation={[-Math.PI / 3.0, 0, Math.PI / 6]}
+    position={[0,0,0]}
+    rotation={[0, 0, 0]}
     ref={pao1}
     >
-    <mesh geometry={nodes.bread002.geometry} 
+      
+    {/* <mesh geometry={nodes.bread002.geometry} 
       material={materials.bread01a} 
-      scale={0.25} 
-    
-    />
+      scale={0.25} > */}
+      
+      
+
+    <mesh>  
+    </mesh>
     </group>
     
 
@@ -147,11 +165,22 @@ return (
     position={[0, FLOOR_HEIGHT, 1.5]} 
     rotation={[-Math.PI / 3.5, 0, -Math.PI / 2]} 
     ref={pao2}
-    >
+    > 
+    <Html className="content"  position={[0, 0, 0]} transform style={{fontFamily:'Arial', overflow:'visible'}}>
+      <div className="wrapper" style={{backgroundColor:'#22ff22', height:'50vh',width:'150px'}} >
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente officiis odit mollitia aut corporis sed debitis dicta. Pariatur totam, similique enim, nam error quasi ullam obcaecati deleniti nesciunt debitis maxime.
+        <br />
+        </p>
+        <video autoPlay muted loop id="myVideo" style={{width:'100px'}}>
+            <source src="https://www.softfinanca.net/projectos/ca/campanhas/Campanhas_Producao_Backup_V3/0348_CA-Solucoes-Credito-Habitacao/CA_MD0348_V1_V_CA-Solucoes-Credito-Habitacao.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </Html>
       <mesh geometry={nodes.bread003.geometry} 
       material={materials.bread02a} 
-      scale={0.25} 
-      />
+      scale={0.25} >
+        
+      </mesh>
     </group>
     
 

@@ -13,7 +13,7 @@ const Section = (prs) => {
         <section 
         itemID="OverlaySection"
         className={`h-screen flex flex-col justify-center p-10 ${prs.right ? 'rightalign' : 'leftalign'}`}
-        style={{ height:'100vh', width:'100vw', display:'flex',flexDirection:'column',justifyContent: 'center', padding:'0px', opacity:prs.opacity
+        style={{ height:'100vh', width:'100vw', display:'flex',flexDirection:'column',justifyContent: 'center', padding:'0px', opacity:prs.opacity,backgroundColor:'#00dd5522'
         }}
         >
             <div 
@@ -46,7 +46,7 @@ export const Overlay = () =>{
     const [opacityThirdSection, setOpacityThirdSection] = useState(1);
     const [opacityFourthSection, setOpacityFourthSection] = useState(1);
 
-    console.log(scroll.offset);
+    // console.log(scroll.offset);
 
     useFrame(() =>{
         // setOpacityFirstSection(1-scroll.range(0,1/sectionQnt));
