@@ -1,7 +1,6 @@
 import { MeshDiscardMaterial, MeshPortalMaterial, MeshRefractionMaterial, MeshWobbleMaterial, OrbitControls, ScrollControls } from "@react-three/drei";
 import { MeshStandardMaterial } from "three";
 import { Models } from "./assets/Models";
-import { Moka } from "./assets/Moka";
 import { Overlay } from "./assets/Overlay";
 
 export const ModelsControlsEnvironment = () => {
