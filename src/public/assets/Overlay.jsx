@@ -13,7 +13,7 @@ const Section = (prs) => {
         <section 
         itemID="OverlaySection"
         className={`h-screen flex flex-col justify-center p-10 ${prs.right ? 'rightalign' : 'leftalign'}`}
-        style={{ height:'100vh', width:'100vw', display:'flex',flexDirection:'column',justifyContent: 'center', padding:'0px', opacity:prs.opacity,backgroundColor:'#00dd5522'
+        style={{ height:'100vh', width:'100vw', display:'flex',flexDirection:'column',justifyContent: 'center', padding:'0px', opacity:prs.opacity
         }}
         >
             <div 
@@ -63,15 +63,14 @@ export const Overlay = () =>{
             
             <div className="w-screen">
                 < Section opacity={opacityFirstSection}>
-                <h1 className='font-semibold font-serif text-2xl' >Hello, World!</h1>
-                <p className="text-gray-500">This is a simple text</p>
+                <h1 className='font-semibold font-serif text-2xl' >MD-V</h1>
+                <p className="text-gray-500">Montra Digital Vertical</p>
                 </Section >
 
                 <Section right opacity={opacitySecondSection} >
-                <h1 className='font-serif text-2xl' >Second section</h1>
+                <h1 className='font-serif text-2xl' >MD-H</h1>
                 <p className="text-gray-500">
-                    This is the second text box <br />
-                    It has more text just to show how it will behave with longer paragraphs that may extend for a few lines. <br />It will also show how line breaks affect the looks.
+                    Montra Digital Horizontal
                 </p>
                 
                 
@@ -79,18 +78,18 @@ export const Overlay = () =>{
                 </Section >
 
                 < Section opacity={opacityThirdSection} >
-                <h1 className='font-serif text-2xl' >Part 3</h1>
+                <h1 className='font-serif text-2xl' >CTV</h1>
                 <p className="text-gray-500">
-                    Third one.
+                    CTV
                 </p>
                 
 
                 </Section >
 
                 < Section right opacity={opacityFourthSection}>
-                <h1 className='font-serif text-2xl' >Section 4</h1>
+                <h1 className='font-serif text-2xl' >iPad</h1>
                 <p className="text-gray-500">
-                    And this is the last one.
+                    It just works
                 </p>
                 </Section>
             
